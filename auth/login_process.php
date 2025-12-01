@@ -2,11 +2,15 @@
 session_start();
 require "../config/db.php";
 
-$email    = $_POST['email'];
+$email    = trim($_POST['email']);
 $password = $_POST['password'];
 
-$query = mysqli_query($conn, "SELECT * FROM users WHERE email='$email'");
-$user  = mysqli_fetch_assoc($query);
+$stmt = $conn->prepare("SELECT * FROM users WHERE email = ?");
+$stmt->bind_param("s", $email);
+$stmt->execute();
+$result = $stmt->get_result();
+$user   = $result->fetch_assoc();
+$stmt->close();
 
 if ($user && password_verify($password, $user['password'])) {
 
@@ -14,14 +18,15 @@ if ($user && password_verify($password, $user['password'])) {
     $_SESSION['nama']    = $user['nama'];
     $_SESSION['role']    = $user['role'];
 
-    if ($user['role'] == "admin") {
+    if ($user['role'] === "admin") {
         header("Location: ../admin/index.php");
     } else {
         header("Location: ../mahasiswa/index.php");
     }
+    exit;
 
 } else {
-    echo "<script>alert('Login gagal! Periksa email & password.');window.location='../login.php'</script>";
+    $_SESSION['error'] = "Email atau password salah.";
+    header("Location: ../login.php");
+    exit;
 }
-
-?>

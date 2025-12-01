@@ -1,3 +1,9 @@
+<?php
+session_start();
+$error  = $_SESSION['error'] ?? '';
+$success = $_SESSION['success'] ?? '';
+unset($_SESSION['error'], $_SESSION['success']);
+?>
 <!DOCTYPE html>
 <html>
 
@@ -7,6 +13,15 @@
 </head>
 
 <body>
+
+    <!-- Alert -->
+    <?php if ($error): ?>
+        <div class="alert alert-danger"><?= $error ?></div>
+    <?php endif; ?>
+
+    <?php if ($success): ?>
+        <div class="alert alert-success"><?= $success ?></div>
+    <?php endif; ?>
 
     <div class="form-container">
         <h2>Login</h2>
@@ -22,7 +37,6 @@
         </form>
     </div>
 
-    <!-- Javascript agar show password, validasi, alert -->
     <script src="assets/js/script.js"></script>
 </body>
 
