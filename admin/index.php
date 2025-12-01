@@ -9,7 +9,7 @@
 
 <body>
 
-    <a href="DASHBOARD"></a>
+    <a>Admin</a>
 </body>
 
 </html>
