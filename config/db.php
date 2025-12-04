@@ -3,7 +3,7 @@
 $host = "localhost";
 $user = "root";      // sesuaikan
 $pass = "";          // sesuaikan
-$db   = "db_learning";
+$db   = "db_elearning";
 
 $conn = new mysqli($host, $user, $pass, $db);
 
