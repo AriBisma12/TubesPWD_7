@@ -19,7 +19,7 @@ if (!isset($_SESSION['user_id'])) {
     <nav class="navbar">
         <div class="nav-brand">E-LEARNING</div>
         <ul class="nav-links">
-            <li><a href="dashboard.php">Dashboard</a></li>
+            <li><a href="index.php">Dashboard</a></li>
             <li><a href="materi.php">Materi</a></li>
             <li><a href="../profil.php">Profil</a></li>
             <li><a href="#" onclick="confirmLogout('../auth/logout.php')">Logout</a></li>

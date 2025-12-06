@@ -79,7 +79,7 @@ if (isset($_POST['save'])) {
         </form>
 
         <br>
-        <a href="index.php" class="btn-primary">Kembali</a>
+        <a href="mahasiswa/index.php" class="btn-primary">Kembali</a>
     </div>
 
     <script src="assets/js/script.js"></script>
