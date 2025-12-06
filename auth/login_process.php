@@ -22,16 +22,14 @@ if ($user && password_verify($password, $user['password'])) {
     if (strpos($email, '@admin.com') !== false) {
         $_SESSION['role'] = "admin";
         header("Location: ../admin/index.php");
-    }else{
+    } else {
         $_SESSION['role'] = "mahasiswa";
         header("Location: ../mahasiswa/index.php");
     }
 
     exit;
-
 } else {
     $_SESSION['error'] = "Email atau password salah.";
     header("Location: ../login.php");
     exit;
 }
-?>

@@ -32,7 +32,8 @@ if (isset($_POST['save'])) {
         $fotoName = $file;
     }
 
-    mysqli_query($conn,
+    mysqli_query(
+        $conn,
         "UPDATE users SET 
             nama='$nama',
             npm='$npm',
@@ -63,16 +64,6 @@ if (isset($_POST['save'])) {
 
         <div class="profile-box">
 
-            <?php if ($user['foto'] != NULL) : ?>
-                <div class="profile-photo">
-                    <img src="uploads/<?= $user['foto']; ?>">
-                </div>
-            <?php else : ?>
-                <div class="avatar-placeholder">
-                    <?= strtoupper($user['nama'][0]); ?>
-                </div>
-            <?php endif; ?>
-
             <div>
                 <strong><?= $user['nama']; ?></strong><br>
                 <small><?= $user['email']; ?></small>
@@ -84,18 +75,6 @@ if (isset($_POST['save'])) {
             <label>Nama</label>
             <input type="text" name="nama" value="<?= $user['nama']; ?>" required>
 
-            <label>NPM</label>
-            <input type="text" name="npm" value="<?= $user['npm']; ?>" required>
-
-            <label>Fakultas</label>
-            <input type="text" name="fakultas" value="<?= $user['fakultas']; ?>" required>
-
-            <label>Program Studi</label>
-            <input type="text" name="programstudi" value="<?= $user['programstudi']; ?>" required>
-
-            <label>Foto Profil</label>
-            <input type="file" name="foto" accept="image/*">
-
             <button class="btn-primary" name="save" type="submit">Update Profil</button>
         </form>
 
@@ -106,4 +85,5 @@ if (isset($_POST['save'])) {
     <script src="assets/js/script.js"></script>
 
 </body>
+
 </html>

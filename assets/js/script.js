@@ -8,7 +8,7 @@
 /* Fade-out alert (jika ada elemen .alert di halaman) */
 document.addEventListener("DOMContentLoaded", () => {
     const alerts = document.querySelectorAll(".alert");
-    
+
     alerts.forEach(alert => {
         setTimeout(() => {
             alert.style.opacity = "0";
