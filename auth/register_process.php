@@ -7,19 +7,13 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
     // Ambil data
     $nama         = trim($_POST['nama'] ?? '');
-    $npm          = trim($_POST['npm'] ?? '');
-    $fakultas     = trim($_POST['fakultas'] ?? '');
-    $programstudi = trim($_POST['programstudi'] ?? '');
     $email        = trim($_POST['email'] ?? '');
     $password     = $_POST['password'] ?? '';
     $confirm      = $_POST['confirm_password'] ?? '';
 
     // Validasi data wajib
-    if (
-        $nama === '' || $npm === '' || $fakultas === '' || $programstudi === '' ||
-        $email === '' || $password === '' || $confirm === ''
-    ) {
-        $_SESSION['error'] = "Semua field wajib diisi.";
+    if ($nama === '' || $email === '' || $password === '' || $confirm === '') {
+        $_SESSION['error'] = "Nama, email, dan password wajib diisi.";
         header("Location: ../register.php");
         exit;
     }
@@ -47,31 +41,13 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     // Hash password
     $hash = password_hash($password, PASSWORD_DEFAULT);
 
-    // Handle upload foto (opsional)
-    $fotoName = NULL;
-
-    if (!empty($_FILES['foto']['name'])) {
-
-        $tmp    = $_FILES['foto']['tmp_name'];
-        $file   = time() . "_" . basename($_FILES['foto']['name']);
-        $target = "../uploads/" . $file;
-
-        if (!move_uploaded_file($tmp, $target)) {
-            $_SESSION['error'] = "Gagal mengupload foto.";
-            header("Location: ../register.php");
-            exit;
-        }
-
-        $fotoName = $file;
-    }
-
-    // Insert data user baru
+    // Insert data user baru (tanpa npm/fakultas/prodi/foto karena tidak dipakai)
     $stmt = $conn->prepare("
-        INSERT INTO users (nama, npm, fakultas, programstudi, email, password, role, foto)
-        VALUES (?, ?, ?, ?, ?, ?, 'user', ?)
+        INSERT INTO users (nama, email, password, role)
+        VALUES (?, ?, ?, 'user')
     ");
 
-    $stmt->bind_param("sssssss", $nama, $npm, $fakultas, $programstudi, $email, $hash, $fotoName);
+    $stmt->bind_param("sss", $nama, $email, $hash);
 
     if ($stmt->execute()) {
         $_SESSION['success'] = "Registrasi berhasil! Silakan login.";

@@ -32,15 +32,6 @@ unset($_SESSION['error'], $_SESSION['success']);
             <label>Nama Lengkap</label>
             <input type="text" name="nama" required>
 
-            <label>NPM</label>
-            <input type="text" name="npm" required>
-
-            <label>Fakultas</label>
-            <input type="text" name="fakultas" required>
-
-            <label>Program Studi</label>
-            <input type="text" name="programstudi" required>
-
             <label>Email</label>
             <input type="email" name="email" required>
 
@@ -49,9 +40,6 @@ unset($_SESSION['error'], $_SESSION['success']);
 
             <label>Konfirmasi Password</label>
             <input type="password" name="confirm_password" required>
-
-            <label>Foto Profil (opsional)</label>
-            <input type="file" name="foto" accept="image/*">
 
             <button class="btn-primary" type="submit">Daftar</button>
         </form>
