@@ -27,6 +27,7 @@
     <section class="hero">
         <h1>Selamat Datang di Sistem E-Learning</h1>
         <p>Belajar kapanpun & dimanapun menjadi lebih mudah.</p>
+        <p>Share juga ilmu, karena ilmu itu berharga</p>
 
         <?php if (!isset($_SESSION['user_id'])) : ?>
             <a href="register.php" class="btn-primary">Mulai Belajar</a>
