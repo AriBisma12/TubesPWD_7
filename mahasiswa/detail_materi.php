@@ -47,53 +47,80 @@ if (!$materi) {
             </ul>
         </aside>
 
-        <div>
-            <!-- MAIN DETAIL -->
-            <main class="content">
-                <div class="detail-wrapper">
+        <!-- MAIN DETAIL -->
+        <main class="content">
+            <div class="detail-wrapper">
 
-                    <!-- Breadcrumb -->
-                    <div class="breadcrumb">
-                        Materi / <?= htmlspecialchars($materi['judul']) ?>
-                    </div>
+                <!-- Breadcrumb -->
+                <div class="breadcrumb">
+                    Materi / <?= htmlspecialchars($materi['judul']) ?>
+                </div>
 
-                    <!-- Thumbnail -->
-                    <img
-                        src="../assets/uploads/<?= $materi['gambar'] ? $materi['gambar'] : 'placeholder.png' ?>"
-                        class="detail-thumb"
-                        onerror="this.src='../assets/img/placeholder.png'">
+                <!-- Thumbnail -->
+                <img
+                    src="../assets/uploads/<?= $materi['gambar'] ?: 'placeholder.png' ?>"
+                    class="detail-thumb"
+                    onerror="this.src='../assets/img/placeholder.png'">
+
+                <!-- Judul -->
+                <h1 class="detail-title"><?= htmlspecialchars($materi['judul']) ?></h1>
+
+                <!-- Deskripsi -->
+                <p class="detail-desc">
+                    <?= nl2br(htmlspecialchars($materi['deskripsi'])) ?>
+                </p>
 
 
-                    <!-- Judul -->
-                    <h1 class="detail-title"><?= htmlspecialchars($materi['judul']) ?></h1>
+                <!-- Link Video -->
+                <?php if (!empty($materi['link_video'])): ?>
+                    <h2 class="section-title">Link Video</h2>
 
-                    <!-- Deskripsi -->
-                    <p class="detail-desc">
-                        <?= nl2br(htmlspecialchars($materi['deskripsi'])) ?>
+                    <p>
+                        <a href="<?= htmlspecialchars($materi['link_video']) ?>"
+                            target="_blank"
+                            class="card-link"
+                            style="display: inline-block; margin-top: 8px;">
+                            Buka Link Video
+                        </a>
                     </p>
+                <?php endif; ?>
 
-                    <!-- Isi Konten Materi -->
-                    <h2 class="section-title">Isi Konten Materi</h2>
 
-                    <div class="chapter-list">
+                <!-- File Tugas -->
+                <?php if (!empty($materi['file_tugas'])): ?>
+                    <h2 class="section-title">File Tugas</h2>
+
+                    <div class="file-box">
                         <?php
-                        // pecah deskripsi menjadi chapter berdasarkan newline
-                        $chapters = explode("\n", $materi['link_video']);
-                        foreach ($chapters as $ch) {
-                            if (trim($ch) !== "") {
-                                echo "<p>• " . htmlspecialchars($ch) . "</p>";
-                            }
+                        $file = htmlspecialchars($materi['file_tugas']);
+                        $ext  = strtolower(pathinfo($file, PATHINFO_EXTENSION));
+
+                        // Jika PDF → tampilkan embed viewer
+                        if ($ext === "pdf") {
+                            echo "
+                        <embed src='../assets/uploads/$file'
+                               type='application/pdf'
+                               width='100%'
+                               height='500px'>
+                        ";
+                        } else {
+                            // Download file lain (doc, docx, ppt, zip, dll)
+                            echo "
+                        <a href='../assets/uploads/$file'
+                           class='btn-download'
+                           download>
+                            📥 Download File Tugas ($ext)
+                        </a>
+                        ";
                         }
                         ?>
                     </div>
+                <?php endif; ?>
 
-                    <!-- Tombol -->
-                    <a href="#" class="btn-subscribe">Langganan</a>
+                <a class="btn-subscribe" style="margin-top: 20px;">Langganan</a>
 
-                </div>
-            </main>
-        </div>
-
+            </div>
+        </main>
 
     </div>
 

@@ -12,66 +12,82 @@ $old     = $_SESSION['old'] ?? ['judul' => '', 'deskripsi' => '', 'link_video' =
 unset($_SESSION['error'], $_SESSION['success'], $_SESSION['old']);
 ?>
 <!DOCTYPE html>
-<html>
+<html lang="id">
 
 <head>
+    <meta charset="UTF-8">
     <title>Tambah Materi</title>
     <link rel="stylesheet" href="../assets/css/style.css">
 </head>
 
 <body>
 
-    <nav class="navbar">
-        <div class="nav-brand">E-LEARNING</div>
-        <ul class="nav-links">
-            <li><a href="dashboard.php">Dashboard</a></li>
-            <li><a href="materi.php">Materi</a></li>
-            <li><a href="tugas.php">Tugas</a></li>
-            <li><a href="../profil.php">Profil</a></li>
-            <li><a href="#" onclick="confirmLogout('../auth/logout.php')">Logout</a></li>
-        </ul>
-    </nav>
+    <div class="layout">
 
-    <section class="hero">
-        <h1>Tambah Materi</h1>
-        <p>Lengkapi form berikut untuk menambahkan materi baru.</p>
-    </section>
+        <!-- Sidebar -->
+        <aside class="sidebar">
+            <div class="brand">Belajar<span class="accent">HUB</span></div>
 
-    <div class="form-container">
+            <div class="menu-title">Menu</div>
+            <ul class="menu-list">
+                <li><a href="index.php">Home</a></li>
+                <li class="active"><a href="materi.php">Materi</a></li>
+                <li><a href="tugas.php">Tugas</a></li>
+                <li><a href="profil.php">Profil</a></li>
+                <li><a href="../auth/logout.php">Logout</a></li>
+            </ul>
+        </aside>
 
-        <?php if ($error): ?>
-            <div class="alert alert-danger"><?= htmlspecialchars($error) ?></div>
-        <?php endif; ?>
+        <main class="content">
 
-        <?php if ($success): ?>
-            <div class="alert alert-success"><?= htmlspecialchars($success) ?></div>
-        <?php endif; ?>
+            <!-- Hero Section -->
+            <section class="hero">
+                <h1>Tambah Materi</h1>
+                <p>Lengkapi form berikut untuk menambahkan materi baru.</p>
+            </section>
 
-        <h2>Form Materi</h2>
+            <div class="form-container">
 
-        <form action="../proses/tambah_materi_proses.php" method="POST" enctype="multipart/form-data">
+                <?php if ($error): ?>
+                    <div class="alert alert-danger"><?= htmlspecialchars($error) ?></div>
+                <?php endif; ?>
 
-            <label>Judul Materi</label>
-            <input type="text" name="judul"
-                   value="<?= htmlspecialchars($old['judul']) ?>" required>
+                <?php if ($success): ?>
+                    <div class="alert alert-success"><?= htmlspecialchars($success) ?></div>
+                <?php endif; ?>
 
-            <label>Deskripsi</label>
-            <textarea name="deskripsi" required><?= htmlspecialchars($old['deskripsi']) ?></textarea>
+                <h2>Form Materi</h2>
 
-            <label>Link Video (opsional)</label>
-            <input type="text" name="link_video"
-                   value="<?= htmlspecialchars($old['link_video']) ?>">
+                <form action="../proses/tambah_materi_proses.php" method="POST" enctype="multipart/form-data">
 
-            <label>Gambar (opsional)</label>
-            <input type="file" name="gambar" accept=".jpg,.jpeg,.png,.gif">
+                    <label>Judul Materi</label>
+                    <input type="text" name="judul"
+                        value="<?= htmlspecialchars($old['judul']) ?>" required>
 
-            <label>File Tugas (opsional)</label>
-            <input type="file" name="file_tugas" accept=".pdf,.doc,.docx,.zip,.ppt,.pptx">
+                    <label>Deskripsi</label>
+                    <textarea name="deskripsi" required><?= htmlspecialchars($old['deskripsi']) ?></textarea>
 
-            <br><br>
-            <button class="btn-primary" href="../mahasiswa/materi.php" type="submit">Simpan Materi</button>
-            <a class="btn-primary" href="../mahasiswa/materi.php" style="margin-left: 8px;">Kembali</a>
-        </form>
+                    <label>Link Video (opsional)</label>
+                    <input type="text" name="link_video"
+                        value="<?= htmlspecialchars($old['link_video']) ?>">
+
+                    <label>Gambar (opsional)</label>
+                    <input type="file" name="gambar" accept=".jpg,.jpeg,.png,.gif">
+
+                    <label>File Tugas (opsional)</label>
+                    <input type="file" name="file_tugas" accept=".pdf,.doc,.docx,.zip,.ppt,.pptx">
+                    
+                    <div class="form-btn-group">
+                        <button class="btn-primary" type="submit">Simpan Materi</button>
+                        <a class="link-muted" href="materi.php">Kembali</a>
+                    </div>
+
+                </form>
+
+            </div>
+
+        </main>
+
     </div>
 
     <footer class="footer">Developed for UAS PWD 2025/2026</footer>

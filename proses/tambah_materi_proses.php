@@ -44,7 +44,7 @@ if (!empty($_FILES['gambar']['name'])) {
         $errors[] = "Upload gambar gagal.";
     } else {
         $gambarName = time() . "_" . preg_replace('/[^A-Za-z0-9._-]/', '_', $_FILES['gambar']['name']);
-        if (!move_uploaded_file($_FILES['gambar']['tmp_name'], "../uploads/" . $gambarName)) {
+        if (!move_uploaded_file($_FILES['gambar']['tmp_name'], "../assets/uploads/" . $gambarName)) {
             $errors[]  = "Tidak bisa menyimpan gambar.";
             $gambarName = null;
         }
@@ -64,7 +64,7 @@ if (!empty($_FILES['file_tugas']['name'])) {
         $errors[] = "Upload file tugas gagal.";
     } else {
         $fileName = time() . "_" . preg_replace('/[^A-Za-z0-9._-]/', '_', $_FILES['file_tugas']['name']);
-        if (!move_uploaded_file($_FILES['file_tugas']['tmp_name'], "../uploads/" . $fileName)) {
+        if (!move_uploaded_file($_FILES['file_tugas']['tmp_name'], "../assets/uploads/" . $fileName)) {
             $errors[] = "Tidak bisa menyimpan file tugas.";
             $fileName = null;
         }
