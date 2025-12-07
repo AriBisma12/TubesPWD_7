@@ -58,10 +58,13 @@ if (!$materi) {
                     </div>
 
                     <!-- Thumbnail -->
+
+
                     <img
-                        src="../uploads/<?= $materi['gambar'] ?: 'placeholder.png' ?>"
+                        src="../assets/uploads/<?= $materi['gambar'] ? $materi['gambar'] : 'placeholder.png' ?>"
                         class="detail-thumb"
                         onerror="this.src='../assets/img/placeholder.png'">
+
 
                     <!-- Judul -->
                     <h1 class="detail-title"><?= htmlspecialchars($materi['judul']) ?></h1>

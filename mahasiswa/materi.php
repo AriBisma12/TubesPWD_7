@@ -83,7 +83,7 @@ $result = $query->get_result();
 
                                 <!-- Thumbnail -->
                                 <div class="card-thumb"
-                                    style="background-image: url('../uploads/<?= $row['gambar'] ?: 'placeholder.png' ?>'); 
+                                    style="background-image: url('../assets/uploads/<?= $row['gambar'] ?: 'placeholder.png' ?>'); 
                                        background-color:#e5e7eb;">
                                 </div>
 
