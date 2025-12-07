@@ -58,8 +58,6 @@ if (!$materi) {
                     </div>
 
                     <!-- Thumbnail -->
-
-
                     <img
                         src="../assets/uploads/<?= $materi['gambar'] ? $materi['gambar'] : 'placeholder.png' ?>"
                         class="detail-thumb"
